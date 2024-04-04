@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body style="background-color: #1a1a1a;">
+    <center>
+        <div style="background-color: #000000; width: 40%; padding: 20px; border-radius: 20px;">
+            <h1 style="color: #ff0000; font-family: Roboto; font-weight: bolder; font-size: 50px;">Luz's Machine</h1>
+
+            <br><br>
+
+            <h3 style="color: #ff0000;">Escolha a base do seu número</h3>
+            <select id="select_base" style="color: #ff0000;">
+                <option value="Decimal" style="color: #ff0000;">Decimal</option>
+                <option value="Octal" style="color: #ff0000;">Octal</option>
+                <option value="Hexadecimal" style="color: #ff0000;">Hexadecimal</option>
+                <option value="Binario" style="color: #ff0000;">Binário</option>
+            </select>
+
+            <h3 style="color: #ff0000;">Insira um número</h3>
+            <input id="demo1" type="text" placeholder="Digite o valor na base selecionada">
+
+            <br><br>
+
+            <h3 style="color: #ff0000;">Converter para:</h3>
+
+            <input onclick="aparecer_octal()" type="checkbox" style="color: #ff0000;"><b
+                style="color: #ff0000;">Octal</b>
+            <br>
+            <div style="display: none; background-color: #dcdcdc; border-radius: 20px; padding: 5px; 
+            color: rgb(0, 0, 0); width: 15%; font-weight: 500; height: 30px;" id="demo2"></div>
+
+            <br><br>
+
+            <input onclick="aparecer_hexa()" type="checkbox" style="color: #ff0000;"><b
+                style="color: #ff0000;">Hexadecimal</b>
+            <br>
+            <div style="display: none; background-color: #dcdcdc; border-radius: 20px; padding: 5px;
+            color: rgb(7, 7, 7); width: 15%; font-weight: 500; height: 30px;" id="demo3"></div>
+
+            <br><br>
+
+            <input onclick="aparecer_bin()" type="checkbox" style="color: #ff0000;"><b
+                style="color: #ff0000;">Binário</b>
+            <br>
+            <div style="display: none; background-color: #dcdcdc; border-radius: 20px; padding: 5px;
+            color: rgb(5, 5, 5); width: 15%; font-weight: 500; height: 30px;" id="demo4"></div>
+
+            <br><br>
+
+            <input onclick="aparecer_dec()" type="checkbox" style="color: #ff0000;"><b
+                style="color: #ff0000;">Decimal</b>
+            <br>
+            <div style="display: none; background-color: #dcdcdc; border-radius: 20px; padding: 5px;
+            color: rgb(5, 5, 5); width: 15%; font-weight: 500; height: 30px;" id="demo5"></div>
+
+            <br><br>
+            <button onclick="converter()">Converter</button>
+        </div>
+    </center>
+
+    <script>
+        function converter() {
+            var numeroSelecionado = document.getElementById("demo1").value;
+            var baseSelecionada = document.getElementById("select_base").value;
+
+            var octal = "";
+            var hexadecimal = "";
+            var binaria = "";
+            var decimal = '';
+
+            if (baseSelecionada == "Octal") {
+                decimal = parseInt(numeroSelecionado, 8).toString(10);
+                binaria = parseInt(numeroSelecionado, 8).toString(2);
+                hexadecimal = parseInt(numeroSelecionado, 8).toString(16);
+                octal = numeroSelecionado;
+            } else if (baseSelecionada == "Hexadecimal") {
+                decimal = parseInt(numeroSelecionado, 16).toString(10);
+                binaria = parseInt(numeroSelecionado, 16).toString(2);
+                octal = parseInt(numeroSelecionado, 16).toString(8);
+                hexadecimal = numeroSelecionado;
+            } else if (baseSelecionada == "Binario") {
+                decimal = parseInt(numeroSelecionado, 2).toString(10);
+                hexadecimal = parseInt(numeroSelecionado, 2).toString(16);
+                octal = parseInt(numeroSelecionado, 2).toString(8);
+                binaria = numeroSelecionado;
+            } else {
+                decimal = numeroSelecionado;
+                binaria = parseInt(numeroSelecionado, 10).toString(2);
+                hexadecimal = parseInt(numeroSelecionado, 10).toString(16);
+                octal = parseInt(numeroSelecionado, 10).toString(8);
+            }
+
+            document.getElementById("demo2").innerHTML = octal;
+            document.getElementById("demo3").innerHTML = hexadecimal;
+            document.getElementById("demo4").innerHTML = binaria;
+            document.getElementById("demo5").innerHTML = decimal;
+        }
+
+        function aparecer_bin() {
+            document.getElementById("demo4").style.display = 'block';
+        }
+
+        function aparecer_hexa() {
+            document.getElementById("demo3").style.display = 'block';
+        }
+
+        function aparecer_octal() {
+            document.getElementById("demo2").style.display = 'block';
+        }
+
+        function aparecer_dec() {
+            document.getElementById("demo5").style.display = 'block';
+        }
+
+    </script>
+</body>
+
+</html>
